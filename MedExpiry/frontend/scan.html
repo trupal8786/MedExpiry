@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Medicine — MedExpiry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/custom.css">
+    <script>
+        tailwind.config = {
+            theme: { extend: { fontFamily: { sans:['Inter','sans-serif'], display:['Space Grotesk','sans-serif'] }, colors: { brand:{50:'#f0fdf4',100:'#dcfce7',200:'#bbf7d0',300:'#86efac',400:'#4ade80',500:'#22c55e',600:'#16a34a',700:'#15803d',800:'#166534',900:'#14532d'}, danger:{50:'#fef2f2',100:'#fee2e2',400:'#f87171',500:'#ef4444',600:'#dc2626'}, warning:{50:'#fffbeb',100:'#fef3c7',400:'#fbbf24',500:'#f59e0b',600:'#d97706'}, dark:{800:'#1e1e2e',900:'#11111b',950:'#0a0a14'} } } } }
+    </script>
+</head>
+<body class="bg-dark-950 text-white min-h-screen font-sans">
+
+    <!-- NAV (same as index) -->
+    <nav class="fixed top-0 w-full z-50 bg-dark-950/80 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center gap-3">
+                    <div class="w-9 h-9 bg-gradient-to-br from-brand-400 to-brand-600 rounded-xl flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                    </div>
+                    <span class="text-xl font-display font-bold">Med<span class="text-brand-400">Expiry</span></span>
+                </a>
+                <div class="hidden md:flex items-center gap-1">
+                    <a href="index.html" class="nav-link">Dashboard</a>
+                    <a href="scan.html" class="nav-link active">Scan</a>
+                    <a href="track.html" class="nav-link">Track</a>
+                    <a href="donate.html" class="nav-link">Donate</a>
+                    <a href="family.html" class="nav-link">Family</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ════════════════════════════════════ -->
+    <!-- SCAN PAGE CONTENT -->
+    <!-- ════════════════════════════════════ -->
+    <section class="pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+
+        <div class="mb-8">
+            <h1 class="text-3xl font-display font-bold mb-2">Scan Medicine Strip</h1>
+            <p class="text-gray-400">Point your camera at the medicine strip or upload a photo. Our AI will extract all details automatically.</p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8">
+
+            <!-- Camera / Upload Area -->
+            <div>
+                <div id="cameraContainer" class="relative bg-dark-800/50 rounded-3xl border-2 border-dashed border-white/10 overflow-hidden aspect-[4/3] flex items-center justify-center hover:border-brand-500/30 transition-colors">
+
+                    <!-- Default State -->
+                    <div id="scanDefault" class="text-center p-8">
+                        <div class="w-20 h-20 mx-auto mb-4 bg-brand-500/10 rounded-3xl flex items-center justify-center text-4xl border border-brand-500/20">📸</div>
+                        <h3 class="font-display font-bold text-lg mb-2">Capture or Upload</h3>
+                        <p class="text-gray-400 text-sm mb-6">Take a photo of the medicine strip showing the expiry date</p>
+                        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                            <button id="startCameraBtn" class="px-5 py-3 bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-2xl transition-all flex items-center gap-2 justify-center">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                Open Camera
+                            </button>
+                            <label class="px-5 py-3 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-2xl border border-white/10 cursor-pointer transition-all flex items-center gap-2 justify-center">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                Upload Photo
+                                <input type="file" id="fileInput" accept="image/*" class="hidden">
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Camera Preview -->
+                    <video id="cameraPreview" class="absolute inset-0 w-full h-full object-cover hidden" autoplay playsinline></video>
+
+                    <!-- Uploaded Image Preview -->
+                    <img id="imagePreview" class="absolute inset-0 w-full h-full object-contain hidden p-2" alt="Medicine strip">
+
+                    <!-- Scan Overlay Animation -->
+                    <div id="scanOverlay" class="absolute inset-0 hidden">
+                        <div class="scan-line"></div>
+                        <div class="absolute inset-4 border-2 border-brand-400/50 rounded-2xl"></div>
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-dark-900/80 backdrop-blur-sm px-6 py-3 rounded-2xl">
+                            <div class="flex items-center gap-3">
+                                <div class="w-5 h-5 border-2 border-brand-400 border-t-transparent rounded-full animate-spin"></div>
+                                <span class="text-brand-400 font-medium">Scanning...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Camera Controls -->
+                <div id="cameraControls" class="hidden mt-4 flex gap-3 justify-center">
+                    <button id="captureBtn" class="px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-2xl transition-all flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        Capture & Scan
+                    </button>
+                    <button id="closeCameraBtn" class="px-6 py-3 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-2xl border border-white/10 transition-all">
+                        Cancel
+                    </button>
+                </div>
+
+                <!-- Demo Button -->
+                <div class="mt-4 text-center">
+                    <button id="demoScanBtn" class="text-sm text-gray-500 hover:text-brand-400 underline underline-offset-4 transition-colors">
+                        Or try a demo scan (no camera needed)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Scan Results -->
+            <div>
+                <div id="scanResults" class="bg-dark-800/30 rounded-3xl border border-white/5 p-6 min-h-[400px] flex items-center justify-center">
+                    <div id="resultsDefault" class="text-center text-gray-500">
+                        <div class="text-5xl mb-4">🔍</div>
+                        <p class="font-medium">Scan results will appear here</p>
+                        <p class="text-sm mt-1">Capture or upload a medicine photo to get started</p>
+                    </div>
+
+                    <div id="resultsContent" class="hidden w-full">
+                        <!-- Filled dynamically by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/scanner.js"></script>
+</body>
+</html>
