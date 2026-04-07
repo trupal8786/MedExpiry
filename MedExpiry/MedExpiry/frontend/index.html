@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedExpiry — Reduce Medicine Waste</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/custom.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: { 50:'#f0fdf4', 100:'#dcfce7', 200:'#bbf7d0', 300:'#86efac', 400:'#4ade80', 500:'#22c55e', 600:'#16a34a', 700:'#15803d', 800:'#166534', 900:'#14532d' },
+                        danger: { 50:'#fef2f2', 100:'#fee2e2', 400:'#f87171', 500:'#ef4444', 600:'#dc2626' },
+                        warning: { 50:'#fffbeb', 100:'#fef3c7', 400:'#fbbf24', 500:'#f59e0b', 600:'#d97706' },
+                        dark: { 800:'#1e1e2e', 900:'#11111b', 950:'#0a0a14' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-dark-950 text-white min-h-screen font-sans">
+
+    <!-- ════════════════════════════════════ -->
+    <!-- NAVIGATION -->
+    <!-- ════════════════════════════════════ -->
+    <nav class="fixed top-0 w-full z-50 bg-dark-950/80 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-3">
+                    <div class="w-9 h-9 bg-gradient-to-br from-brand-400 to-brand-600 rounded-xl flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                    </div>
+                    <span class="text-xl font-display font-bold">Med<span class="text-brand-400">Expiry</span></span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden md:flex items-center gap-1">
+                    <a href="index.html" class="nav-link active">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                        Dashboard
+                    </a>
+                    <a href="scan.html" class="nav-link">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        Scan
+                    </a>
+                    <a href="track.html" class="nav-link">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+                        Track
+                    </a>
+                    <a href="donate.html" class="nav-link">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                        Donate
+                    </a>
+                    <a href="family.html" class="nav-link">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        Family
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-white/10 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-dark-900 border-t border-white/5 px-4 pb-4">
+            <a href="index.html" class="block py-3 px-4 rounded-lg hover:bg-white/5 text-brand-400 font-medium">Dashboard</a>
+            <a href="scan.html" class="block py-3 px-4 rounded-lg hover:bg-white/5 text-gray-300">Scan Medicine</a>
+            <a href="track.html" class="block py-3 px-4 rounded-lg hover:bg-white/5 text-gray-300">Track Inventory</a>
+            <a href="donate.html" class="block py-3 px-4 rounded-lg hover:bg-white/5 text-gray-300">Donate Nearby</a>
+            <a href="family.html" class="block py-3 px-4 rounded-lg hover:bg-white/5 text-gray-300">Family Sharing</a>
+        </div>
+    </nav>
+
+    <!-- ════════════════════════════════════ -->
+    <!-- HERO SECTION -->
+    <!-- ════════════════════════════════════ -->
+    <section class="pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <!-- Hero Card -->
+        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600/20 via-dark-800 to-brand-900/20 border border-brand-500/10 p-8 sm:p-12 mb-8">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-brand-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+            <div class="absolute bottom-0 left-0 w-64 h-64 bg-brand-400/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+
+            <div class="relative z-10 flex flex-col lg:flex-row items-center gap-8">
+                <div class="flex-1">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-500/10 border border-brand-500/20 rounded-full text-brand-400 text-sm font-medium mb-4">
+                        <span class="w-2 h-2 bg-brand-400 rounded-full animate-pulse"></span>
+                        Reducing ₹18,000 Cr medicine waste
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold leading-tight mb-4">
+                        Never Let <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-emerald-300">Medicine Expire</span><br>
+                        Again.
+                    </h1>
+                    <p class="text-gray-400 text-lg max-w-xl mb-8">
+                        Scan, track, and donate your household medicines before they expire.
+                        Save money. Reduce waste. Help those in need.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="scan.html" class="group inline-flex items-center gap-2 px-6 py-3.5 bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-2xl transition-all shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 hover:-translate-y-0.5">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            Scan Medicine
+                            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </a>
+                        <a href="track.html" class="inline-flex items-center gap-2 px-6 py-3.5 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-2xl border border-white/10 hover:border-white/20 transition-all">
+                            View Inventory
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Pill Animation -->
+                <div class="relative w-64 h-64 flex-shrink-0 hidden lg:block">
+                    <div class="pill-float absolute inset-0 flex items-center justify-center">
+                        <div class="w-40 h-40 rounded-3xl bg-gradient-to-br from-brand-400/20 to-brand-600/20 border border-brand-400/20 backdrop-blur-sm flex items-center justify-center rotate-12">
+                            <span class="text-7xl">💊</span>
+                        </div>
+                    </div>
+                    <div class="pill-orbit absolute w-12 h-12 bg-danger-500/20 border border-danger-500/30 rounded-2xl flex items-center justify-center text-2xl" style="top:10%; left:0;">⏰</div>
+                    <div class="pill-orbit-reverse absolute w-12 h-12 bg-warning-500/20 border border-warning-500/30 rounded-2xl flex items-center justify-center text-2xl" style="bottom:10%; right:0;">🔔</div>
+                    <div class="pill-orbit absolute w-12 h-12 bg-brand-500/20 border border-brand-500/30 rounded-2xl flex items-center justify-center text-2xl" style="top:5%; right:15%;">❤️</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ════════════════════════════════════ -->
+        <!-- STATS CARDS -->
+        <!-- ════════════════════════════════════ -->
+        <div id="statsGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <!-- Stats will be injected by JS -->
+            <div class="stat-card animate-pulse bg-dark-800/50 rounded-2xl p-6 h-32"></div>
+            <div class="stat-card animate-pulse bg-dark-800/50 rounded-2xl p-6 h-32"></div>
+            <div class="stat-card animate-pulse bg-dark-800/50 rounded-2xl p-6 h-32"></div>
+            <div class="stat-card animate-pulse bg-dark-800/50 rounded-2xl p-6 h-32"></div>
+        </div>
+
+        <!-- ════════════════════════════════════ -->
+        <!-- ALERTS SECTION -->
+        <!-- ════════════════════════════════════ -->
+        <div class="mb-8">
+            <h2 class="text-xl font-display font-bold mb-4 flex items-center gap-2">
+                <svg class="w-5 h-5 text-warning-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                Smart Alerts
+            </h2>
+            <div id="alertsList" class="space-y-3">
+                <div class="animate-pulse bg-dark-800/50 rounded-2xl p-4 h-20"></div>
+                <div class="animate-pulse bg-dark-800/50 rounded-2xl p-4 h-20"></div>
+            </div>
+        </div>
+
+        <!-- ════════════════════════════════════ -->
+        <!-- RECENT MEDICINES TABLE -->
+        <!-- ════════════════════════════════════ -->
+        <div class="bg-dark-800/30 rounded-3xl border border-white/5 overflow-hidden">
+            <div class="px-6 py-5 flex items-center justify-between border-b border-white/5">
+                <h2 class="text-xl font-display font-bold flex items-center gap-2">
+                    <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                    Medicine Inventory
+                </h2>
+                <a href="scan.html" class="text-sm text-brand-400 hover:text-brand-300 font-medium flex items-center gap-1">
+                    + Add New
+                </a>
+            </div>
+
+            <!-- Table -->
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="text-left text-gray-500 text-sm border-b border-white/5">
+                            <th class="px-6 py-3 font-medium">Medicine</th>
+                            <th class="px-6 py-3 font-medium hidden sm:table-cell">Category</th>
+                            <th class="px-6 py-3 font-medium">Expiry</th>
+                            <th class="px-6 py-3 font-medium hidden md:table-cell">Qty</th>
+                            <th class="px-6 py-3 font-medium">Status</th>
+                            <th class="px-6 py-3 font-medium text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="medicineTableBody" class="divide-y divide-white/5">
+                        <tr><td colspan="6" class="px-6 py-12 text-center text-gray-500">Loading medicines...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ════════════════════════════════════ -->
+        <!-- HOW IT WORKS -->
+        <!-- ════════════════════════════════════ -->
+        <div class="mt-16 mb-8">
+            <h2 class="text-2xl font-display font-bold text-center mb-12">How MedExpiry Works</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center group">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-brand-500/10 rounded-3xl flex items-center justify-center text-4xl border border-brand-500/20 group-hover:scale-110 transition-transform">📸</div>
+                    <h3 class="font-display font-bold text-lg mb-2">1. Scan</h3>
+                    <p class="text-gray-400 text-sm">Point your camera at any medicine strip. Our OCR instantly extracts the name, expiry date & batch number.</p>
+                </div>
+                <div class="text-center group">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-warning-500/10 rounded-3xl flex items-center justify-center text-4xl border border-warning-500/20 group-hover:scale-110 transition-transform">🔔</div>
+                    <h3 class="font-display font-bold text-lg mb-2">2. Track</h3>
+                    <p class="text-gray-400 text-sm">Smart calendar tracks all your medicines. Get push alerts before anything expires. AI predicts refill needs.</p>
+                </div>
+                <div class="text-center group">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-danger-400/10 rounded-3xl flex items-center justify-center text-4xl border border-danger-400/20 group-hover:scale-110 transition-transform">❤️</div>
+                    <h3 class="font-display font-bold text-lg mb-2">3. Donate</h3>
+                    <p class="text-gray-400 text-sm">Don't waste valid medicines. Find nearby NGOs and donation drives on the map. One tap to donate.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════ -->
+    <!-- FOOTER -->
+    <!-- ════════════════════════════════════ -->
+    <footer class="border-t border-white/5 mt-12 py-8 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-gray-500 text-sm">
+            <span>© 2026 MedExpiry. Reducing medicine waste, one household at a time.</span>
+            <span>Built with ❤️ for India</span>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

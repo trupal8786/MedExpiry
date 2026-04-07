@@ -141,8 +141,10 @@ class MedicineOCR:
 
     def extract_text(self, image_path: str) -> str:
         """Extract raw text from medicine image using PyTesseract."""
-        # HACKATHON PRESENTATION MODE: Force mock data to prevent server crashes
-        return self._mock_ocr_text()
+        if not TESSERACT_AVAILABLE:
+            return self._mock_ocr_text()
+
+        processed = self.preprocess_image(image_path)
 
         # Multiple OCR passes with different configurations for best results
         configs = [
